@@ -1,6 +1,6 @@
-# Caminho Delas
+# SheWay
 
-**Informação que acolhe.** O Caminho Delas é um protótipo educativo de uma plataforma comunitária que explora como informações sobre infraestrutura urbana e serviços de apoio podem ficar mais acessíveis.
+**Informação que acolhe.** O Sheway é um protótipo educativo de uma plataforma comunitária que explora como informações sobre infraestrutura urbana e serviços de apoio podem ficar mais acessíveis.
 
 ## Funcionalidades
 
@@ -13,10 +13,17 @@
 
 ## Como executar
 
+### 1-Localmente
+
 1. Baixe ou clone este repositório.
 2. Abra `index.html` no navegador. Para uma experiência mais consistente, use a extensão **Live Server** no Visual Studio Code.
 3. A conexão com a internet é necessária para carregar os mapas do OpenStreetMap, a biblioteca Leaflet e as fontes externas.
 4. Clique no mapa para selecionar um local, escolha **Novo relato**, preencha os campos e salve.
+
+### 2-GitHubPages
+
+O Sheway foi hospedado através do GitHubPages e você pode acessa-lo facilmente através do link a seguir.
+- [SheWay](https://pablocossan.github.io/sheway/)
 
 ## Tecnologias
 
