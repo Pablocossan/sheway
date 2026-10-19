@@ -1,8 +1,8 @@
-/* Caminho Delas — protótipo educativo. Relatos ficam apenas neste navegador. */
+/* SheWay — protótipo educativo. Relatos ficam apenas neste navegador. */
 (() => {
   "use strict";
 
-  const STORAGE_KEY = "caminho-delas-relatos-v1";
+  const STORAGE_KEY = "sheway-relatos-v1";
   const categories = {
     iluminacao: { label: "Iluminação pública", color: "#c79a3b" },
     calcada: { label: "Calçadas e acessibilidade", color: "#57856a" },
