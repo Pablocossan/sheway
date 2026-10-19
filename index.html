@@ -1,120 +1,466 @@
 <!doctype html>
 <html lang="pt-BR">
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="theme-color" content="#6d3e70">
-  <meta name="description" content="Caminho Delas: informação comunitária, prevenção e acesso a serviços de apoio.">
-  <title>Caminho Delas — Informação que acolhe</title>
-  <link rel="preconnect" href="https://unpkg.com">
-  <link rel="preconnect" href="https://tile.openstreetmap.org">
-  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="">
-  <link rel="stylesheet" href="styles.css">
-</head>
-<body>
-  <a class="skip-link" href="#conteudo">Pular para o conteúdo</a>
-  <header class="topbar">
-    <a class="brand" href="#inicio" aria-label="Caminho Delas, início">
-      <span class="brand-mark" aria-hidden="true">cd</span>
-      <span><strong>Caminho Delas</strong><small>informação que acolhe</small></span>
-    </a>
-    <nav class="nav" aria-label="Navegação principal">
-      <a href="#mapa-section">Mapa comunitário</a>
-      <a href="#apoio">Pontos de apoio</a>
-      <a href="#sobre">Sobre o projeto</a>
-    </nav>
-    <a class="emergency-link" href="#emergencia"><span aria-hidden="true">♡</span> Preciso de ajuda</a>
-  </header>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#6d3e70" />
+    <meta
+      name="description"
+      content="SheWay: informação comunitária, prevenção e acesso a serviços de apoio."
+    />
+    <title>SheWay — Informação que acolhe</title>
+    <link rel="preconnect" href="https://unpkg.com" />
+    <link rel="preconnect" href="https://tile.openstreetmap.org" />
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+      integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
+      crossorigin=""
+    />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <a class="skip-link" href="#conteudo">Pular para o conteúdo</a>
+    <header class="topbar">
+      <a class="brand" href="#inicio" aria-label="SheWay, início">
+        <span class="brand-mark" aria-hidden="true">sw</span>
+        <span
+          ><strong>SheWay</strong
+          ><small>informação que acolhe</small></span
+        >
+      </a>
+      <nav class="nav" aria-label="Navegação principal">
+        <a href="#mapa-section">Mapa comunitário</a>
+        <a href="#apoio">Pontos de apoio</a>
+        <a href="#sobre">Sobre o projeto</a>
+      </nav>
+      <a class="emergency-link" href="#emergencia"
+        ><span aria-hidden="true">♡</span> Preciso de ajuda</a
+      >
+    </header>
 
-  <main id="conteudo">
-    <section class="hero" id="inicio">
-      <div class="hero-copy">
-        <span class="eyebrow"><span class="eyebrow-dot"></span> PREVENÇÃO • COMUNIDADE • ACOLHIMENTO</span>
-        <h1>Uma cidade mais segura começa com <em>informação.</em></h1>
-        <p>Consulte problemas de infraestrutura relatados pela comunidade, encontre orientações de apoio e ajude a tornar os espaços públicos melhores para todas.</p>
-        <div class="hero-actions">
-          <a class="button button-primary" href="#mapa-section">Explorar o mapa <span aria-hidden="true">↗</span></a>
-          <button class="button button-secondary" id="hero-report-button" type="button">＋ Relatar um problema</button>
-        </div>
-        <div class="hero-note"><span class="note-icon" aria-hidden="true">✳</span><span>Relatos ajudam a identificar melhorias urbanas. Eles não são uma previsão de segurança nem substituem os canais oficiais.</span></div>
-      </div>
-      <div class="hero-art" aria-label="Ilustração de pessoas e localização em um mapa">
-        <div class="art-orbit orbit-one"></div><div class="art-orbit orbit-two"></div>
-        <div class="art-map-card">
-          <div class="mini-map-grid"></div>
-          <span class="map-path path-one"></span><span class="map-path path-two"></span>
-          <span class="map-pin pin-a">♡</span><span class="map-pin pin-b">＋</span><span class="map-pin pin-c">⌖</span>
-          <div class="map-label"><span class="status-dot"></span><span><strong>Comunidade conectada</strong><small>Informação compartilhada com cuidado</small></span></div>
-        </div>
-        <div class="floating-note note-top"><span class="floating-icon">✦</span><span><strong>Mais informação</strong><small>Mais prevenção</small></span></div>
-        <div class="floating-note note-bottom"><span class="floating-icon heart">♡</span><span><strong>Rede de apoio</strong><small>Ajuda mais acessível</small></span></div>
-      </div>
-    </section>
-
-    <section class="stats-strip" aria-label="Resumo do projeto">
-      <div><span class="stat-icon">⌖</span><span><strong id="report-count">0</strong><small>relatos neste navegador</small></span></div>
-      <div><span class="stat-icon">♧</span><span><strong>Comunidade</strong><small>participação com responsabilidade</small></span></div>
-      <div><span class="stat-icon">♡</span><span><strong>Apoio</strong><small>canais oficiais em destaque</small></span></div>
-    </section>
-
-    <section class="content-section map-section" id="mapa-section">
-      <div class="section-heading">
-        <div><span class="eyebrow">MAPA COMUNITÁRIO</span><h2>Conheça os pontos relatados</h2><p>Explore registros demonstrativos e filtre por tipo de problema urbano.</p></div>
-        <button class="button button-primary" id="report-button" type="button">＋ Novo relato</button>
-      </div>
-      <div class="map-layout">
-        <aside class="map-sidebar">
-          <div class="sidebar-title"><strong>Camadas do mapa</strong><span class="live-label"><span></span> Interativo</span></div>
-          <p class="sidebar-description">Selecione uma categoria para filtrar os marcadores.</p>
-          <div class="filter-list" role="group" aria-label="Filtrar relatos por categoria">
-            <button class="filter-button active" data-filter="todos" type="button"><span class="filter-symbol all">✦</span><span><strong>Todos os pontos</strong><small>Ver todas as categorias</small></span><span class="filter-count" id="count-todos">0</span></button>
-            <button class="filter-button" data-filter="iluminacao" type="button"><span class="filter-symbol light">☼</span><span><strong>Iluminação</strong><small>Postes ou trechos escuros</small></span><span class="filter-count" id="count-iluminacao">0</span></button>
-            <button class="filter-button" data-filter="calcada" type="button"><span class="filter-symbol walk">↗</span><span><strong>Calçadas e acesso</strong><small>Barreiras de circulação</small></span><span class="filter-count" id="count-calcada">0</span></button>
-            <button class="filter-button" data-filter="transporte" type="button"><span class="filter-symbol bus">▰</span><span><strong>Transporte público</strong><small>Paradas e infraestrutura</small></span><span class="filter-count" id="count-transporte">0</span></button>
-            <button class="filter-button" data-filter="outro" type="button"><span class="filter-symbol other">＋</span><span><strong>Outro problema urbano</strong><small>Outras melhorias necessárias</small></span><span class="filter-count" id="count-outro">0</span></button>
+    <main id="conteudo">
+      <section class="hero" id="inicio">
+        <div class="hero-copy">
+          <span class="eyebrow"
+            ><span class="eyebrow-dot"></span> PREVENÇÃO • COMUNIDADE •
+            ACOLHIMENTO</span
+          >
+          <h1>Uma cidade mais segura começa com <em>informação.</em></h1>
+          <p>
+            Consulte problemas de infraestrutura relatados pela comunidade,
+            encontre orientações de apoio e ajude a tornar os espaços públicos
+            melhores para todas.
+          </p>
+          <div class="hero-actions">
+            <a class="button button-primary" href="#mapa-section"
+              >Explorar o mapa <span aria-hidden="true">↗</span></a
+            >
+            <button
+              class="button button-secondary"
+              id="hero-report-button"
+              type="button"
+            >
+              ＋ Relatar um problema
+            </button>
           </div>
-          <div class="map-tip"><span>ⓘ</span><p><strong>Como contribuir?</strong><br>Clique no mapa para escolher um local e depois crie um relato. Não inclua nomes, fotos ou dados pessoais de terceiros.</p></div>
-          <button class="text-button" id="reset-demo" type="button">Restaurar pontos de demonstração</button>
-        </aside>
-        <div class="map-frame"><div id="map" role="application" aria-label="Mapa interativo de relatos de infraestrutura urbana"></div><div class="map-legend"><span><i class="legend-dot legend-demo"></i> Demonstração</span><span><i class="legend-dot legend-local"></i> Relato neste navegador</span></div><div class="map-instruction" id="map-instruction">Selecione um ponto para ver detalhes</div></div>
-      </div>
-      <p class="data-disclaimer"><strong>Importante:</strong> os pontos iniciais são exemplos fictícios para demonstrar o site. Eles não representam ocorrências reais nem classificam uma rua como segura ou perigosa. Relatos enviados aqui ficam apenas neste navegador.</p>
-    </section>
+          <div class="hero-note">
+            <span class="note-icon" aria-hidden="true">✳</span
+            ><span
+              >Relatos ajudam a identificar melhorias urbanas. Eles não são uma
+              previsão de segurança nem substituem os canais oficiais.</span
+            >
+          </div>
+        </div>
+        <div
+          class="hero-art"
+          aria-label="Ilustração de pessoas e localização em um mapa"
+        >
+          <div class="art-orbit orbit-one"></div>
+          <div class="art-orbit orbit-two"></div>
+          <div class="art-map-card">
+            <div class="mini-map-grid"></div>
+            <span class="map-path path-one"></span
+            ><span class="map-path path-two"></span>
+            <span class="map-pin pin-a">♡</span
+            ><span class="map-pin pin-b">＋</span
+            ><span class="map-pin pin-c">⌖</span>
+            <div class="map-label">
+              <span class="status-dot"></span
+              ><span
+                ><strong>Comunidade conectada</strong
+                ><small>Informação compartilhada com cuidado</small></span
+              >
+            </div>
+          </div>
+          <div class="floating-note note-top">
+            <span class="floating-icon">✦</span
+            ><span
+              ><strong>Mais informação</strong
+              ><small>Mais prevenção</small></span
+            >
+          </div>
+          <div class="floating-note note-bottom">
+            <span class="floating-icon heart">♡</span
+            ><span
+              ><strong>Rede de apoio</strong
+              ><small>Ajuda mais acessível</small></span
+            >
+          </div>
+        </div>
+      </section>
 
-    <section class="content-section support-section" id="apoio">
-      <div class="section-heading"><div><span class="eyebrow">REDE DE APOIO</span><h2>Ajuda e orientação</h2><p>Em uma emergência, procure os serviços oficiais. Os contatos abaixo são nacionais.</p></div></div>
-      <div class="support-grid">
-        <article class="support-card urgent-card"><div class="support-card-top"><span class="support-icon">!</span><span class="tag tag-urgent">Emergência</span></div><h3>Polícia Militar</h3><p>Para situações de perigo imediato que exigem atendimento policial.</p><div class="support-number">190</div><a class="button button-dark" href="tel:190">Ligar para 190 ↗</a></article>
-        <article class="support-card"><div class="support-card-top"><span class="support-icon support-purple">♡</span><span class="tag">Orientação</span></div><h3>Ligue 180</h3><p>Central de Atendimento à Mulher: orientação, informações sobre direitos e encaminhamento de denúncias.</p><div class="support-number">180</div><a class="button button-outline" href="https://www.gov.br/mulheres/pt-br/ligue180" target="_blank" rel="noopener noreferrer">Acessar serviço oficial ↗</a></article>
-        <article class="support-card"><div class="support-card-top"><span class="support-icon support-green">⌂</span><span class="tag">Informação</span></div><h3>Encontre atendimento local</h3><p>Consulte os canais oficiais para localizar serviços de atendimento à mulher no seu município.</p><div class="support-small">Fontes oficiais e atualizadas</div><a class="button button-outline" href="https://www.gov.br/mulheres/pt-br/assuntos/servicos" target="_blank" rel="noopener noreferrer">Consultar serviços ↗</a></article>
-      </div>
-      <div class="emergency-banner" id="emergencia"><span class="banner-heart">♡</span><div><strong>Você não precisa resolver tudo sozinha.</strong><p>Se estiver em perigo imediato, vá para um local seguro quando possível e ligue para 190. Este site não envia alertas automaticamente para a polícia ou para contatos de confiança.</p></div><a href="tel:190" class="banner-link">Ligar 190 <span>↗</span></a></div>
-    </section>
+      <section class="stats-strip" aria-label="Resumo do projeto">
+        <div>
+          <span class="stat-icon">⌖</span
+          ><span
+            ><strong id="report-count">0</strong
+            ><small>relatos neste navegador</small></span
+          >
+        </div>
+        <div>
+          <span class="stat-icon">♧</span
+          ><span
+            ><strong>Comunidade</strong
+            ><small>participação com responsabilidade</small></span
+          >
+        </div>
+        <div>
+          <span class="stat-icon">♡</span
+          ><span
+            ><strong>Apoio</strong
+            ><small>canais oficiais em destaque</small></span
+          >
+        </div>
+      </section>
 
-    <section class="about-section" id="sobre"><div class="about-mark">cd</div><div class="about-copy"><span class="eyebrow">SOBRE O CAMINHO DELAS</span><h2>Tecnologia a serviço do cuidado coletivo.</h2><p>O Caminho Delas é um protótipo educativo que explora como informações sobre infraestrutura urbana e serviços de apoio podem ficar mais acessíveis. A proposta incentiva a prevenção e a participação comunitária, respeitando a privacidade das pessoas.</p></div><div class="about-values"><div><span>01</span><strong>Prevenir</strong><small>Identificar melhorias urbanas</small></div><div><span>02</span><strong>Informar</strong><small>Facilitar o acesso à orientação</small></div><div><span>03</span><strong>Acolher</strong><small>Tratar cada relato com cuidado</small></div></div></section>
-  </main>
+      <section class="content-section map-section" id="mapa-section">
+        <div class="section-heading">
+          <div>
+            <span class="eyebrow">MAPA COMUNITÁRIO</span>
+            <h2>Conheça os pontos relatados</h2>
+            <p>
+              Explore registros demonstrativos e filtre por tipo de problema
+              urbano.
+            </p>
+          </div>
+          <button
+            class="button button-primary"
+            id="report-button"
+            type="button"
+          >
+            ＋ Novo relato
+          </button>
+        </div>
+        <div class="map-layout">
+          <aside class="map-sidebar">
+            <div class="sidebar-title">
+              <strong>Camadas do mapa</strong
+              ><span class="live-label"><span></span> Interativo</span>
+            </div>
+            <p class="sidebar-description">
+              Selecione uma categoria para filtrar os marcadores.
+            </p>
+            <div
+              class="filter-list"
+              role="group"
+              aria-label="Filtrar relatos por categoria"
+            >
+              <button
+                class="filter-button active"
+                data-filter="todos"
+                type="button"
+              >
+                <span class="filter-symbol all">✦</span
+                ><span
+                  ><strong>Todos os pontos</strong
+                  ><small>Ver todas as categorias</small></span
+                ><span class="filter-count" id="count-todos">0</span>
+              </button>
+              <button
+                class="filter-button"
+                data-filter="iluminacao"
+                type="button"
+              >
+                <span class="filter-symbol light">☼</span
+                ><span
+                  ><strong>Iluminação</strong
+                  ><small>Postes ou trechos escuros</small></span
+                ><span class="filter-count" id="count-iluminacao">0</span>
+              </button>
+              <button class="filter-button" data-filter="calcada" type="button">
+                <span class="filter-symbol walk">↗</span
+                ><span
+                  ><strong>Calçadas e acesso</strong
+                  ><small>Barreiras de circulação</small></span
+                ><span class="filter-count" id="count-calcada">0</span>
+              </button>
+              <button
+                class="filter-button"
+                data-filter="transporte"
+                type="button"
+              >
+                <span class="filter-symbol bus">▰</span
+                ><span
+                  ><strong>Transporte público</strong
+                  ><small>Paradas e infraestrutura</small></span
+                ><span class="filter-count" id="count-transporte">0</span>
+              </button>
+              <button class="filter-button" data-filter="outro" type="button">
+                <span class="filter-symbol other">＋</span
+                ><span
+                  ><strong>Outro problema urbano</strong
+                  ><small>Outras melhorias necessárias</small></span
+                ><span class="filter-count" id="count-outro">0</span>
+              </button>
+            </div>
+            <div class="map-tip">
+              <span>ⓘ</span>
+              <p>
+                <strong>Como contribuir?</strong><br />Clique no mapa para
+                escolher um local e depois crie um relato. Não inclua nomes,
+                fotos ou dados pessoais de terceiros.
+              </p>
+            </div>
+            <button class="text-button" id="reset-demo" type="button">
+              Restaurar pontos de demonstração
+            </button>
+          </aside>
+          <div class="map-frame">
+            <div
+              id="map"
+              role="application"
+              aria-label="Mapa interativo de relatos de infraestrutura urbana"
+            ></div>
+            <div class="map-legend">
+              <span><i class="legend-dot legend-demo"></i> Demonstração</span
+              ><span
+                ><i class="legend-dot legend-local"></i> Relato neste
+                navegador</span
+              >
+            </div>
+            <div class="map-instruction" id="map-instruction">
+              Selecione um ponto para ver detalhes
+            </div>
+          </div>
+        </div>
+        <p class="data-disclaimer">
+          <strong>Importante:</strong> os pontos iniciais são exemplos fictícios
+          para demonstrar o site. Eles não representam ocorrências reais nem
+          classificam uma rua como segura ou perigosa. Relatos enviados aqui
+          ficam apenas neste navegador.
+        </p>
+      </section>
 
-  <footer class="footer"><a class="brand footer-brand" href="#inicio"><span class="brand-mark">cd</span><span><strong>Caminho Delas</strong><small>informação que acolhe</small></span></a><p>Protótipo desenvolvido para fins educacionais. Não substitui serviços oficiais de emergência.</p><a href="#inicio">Voltar ao topo ↑</a></footer>
+      <section class="content-section support-section" id="apoio">
+        <div class="section-heading">
+          <div>
+            <span class="eyebrow">REDE DE APOIO</span>
+            <h2>Ajuda e orientação</h2>
+            <p>
+              Em uma emergência, procure os serviços oficiais. Os contatos
+              abaixo são nacionais.
+            </p>
+          </div>
+        </div>
+        <div class="support-grid">
+          <article class="support-card urgent-card">
+            <div class="support-card-top">
+              <span class="support-icon">!</span
+              ><span class="tag tag-urgent">Emergência</span>
+            </div>
+            <h3>Polícia Militar</h3>
+            <p>
+              Para situações de perigo imediato que exigem atendimento policial.
+            </p>
+            <div class="support-number">190</div>
+            <a class="button button-dark" href="tel:190">Ligar para 190 ↗</a>
+          </article>
+          <article class="support-card">
+            <div class="support-card-top">
+              <span class="support-icon support-purple">♡</span
+              ><span class="tag">Orientação</span>
+            </div>
+            <h3>Ligue 180</h3>
+            <p>
+              Central de Atendimento à Mulher: orientação, informações sobre
+              direitos e encaminhamento de denúncias.
+            </p>
+            <div class="support-number">180</div>
+            <a
+              class="button button-outline"
+              href="https://www.gov.br/mulheres/pt-br/ligue180"
+              target="_blank"
+              rel="noopener noreferrer"
+              >Acessar serviço oficial ↗</a
+            >
+          </article>
+          <article class="support-card">
+            <div class="support-card-top">
+              <span class="support-icon support-green">⌂</span
+              ><span class="tag">Informação</span>
+            </div>
+            <h3>Encontre atendimento local</h3>
+            <p>
+              Consulte os canais oficiais para localizar serviços de atendimento
+              à mulher no seu município.
+            </p>
+            <div class="support-small">Fontes oficiais e atualizadas</div>
+            <a
+              class="button button-outline"
+              href="https://www.gov.br/mulheres/pt-br/assuntos/servicos"
+              target="_blank"
+              rel="noopener noreferrer"
+              >Consultar serviços ↗</a
+            >
+          </article>
+        </div>
+        <div class="emergency-banner" id="emergencia">
+          <span class="banner-heart">♡</span>
+          <div>
+            <strong>Você não precisa resolver tudo sozinha.</strong>
+            <p>
+              Se estiver em perigo imediato, vá para um local seguro quando
+              possível e ligue para 190. Este site não envia alertas
+              automaticamente para a polícia ou para contatos de confiança.
+            </p>
+          </div>
+          <a href="tel:190" class="banner-link">Ligar 190 <span>↗</span></a>
+        </div>
+      </section>
 
-  <dialog class="report-dialog" id="report-dialog" aria-labelledby="dialog-title">
-    <form id="report-form" class="report-form">
-      <div class="dialog-header"><div><span class="eyebrow">PARTICIPAÇÃO COMUNITÁRIA</span><h2 id="dialog-title">Relatar um problema urbano</h2></div><button class="close-dialog" id="close-dialog" type="button" aria-label="Fechar formulário">×</button></div>
-      <p class="dialog-intro">Compartilhe uma informação objetiva que possa ajudar a identificar melhorias no espaço público.</p>
-      <label for="report-category">Tipo de problema <span>*</span></label>
-      <select id="report-category" name="category" required><option value="">Selecione uma categoria</option><option value="iluminacao">Iluminação pública</option><option value="calcada">Calçadas e acessibilidade</option><option value="transporte">Parada ou infraestrutura de transporte</option><option value="outro">Outro problema urbano</option></select>
-      <label for="report-location">Local ou referência pública <span>*</span></label>
-      <input id="report-location" name="location" maxlength="100" placeholder="Ex.: próximo a uma praça ou avenida" required>
-      <div class="coordinates-note" id="selected-coordinates">Nenhum ponto selecionado no mapa. Você pode marcar um local clicando no mapa.</div>
-      <label for="report-description">Descrição objetiva <span>*</span></label>
-      <textarea id="report-description" name="description" rows="3" maxlength="350" placeholder="Descreva o problema de infraestrutura, sem identificar pessoas." required></textarea>
-      <div class="privacy-notice"><span>ⓘ</span><p>Este protótipo salva o relato apenas no armazenamento local deste navegador. Não inclua nomes, telefones, imagens ou detalhes que identifiquem pessoas. O relato não é enviado às autoridades.</p></div>
-      <p class="form-error" id="form-error" role="alert" hidden></p>
-      <div class="dialog-actions"><button class="button button-secondary" id="cancel-report" type="button">Cancelar</button><button class="button button-primary" type="submit">Salvar relato</button></div>
-    </form>
-  </dialog>
-  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+      <section class="about-section" id="sobre">
+        <div class="about-mark">sw</div>
+        <div class="about-copy">
+          <span class="eyebrow">SOBRE O SHEWAY</span>
+          <h2>Tecnologia a serviço do cuidado coletivo.</h2>
+          <p>
+            O SheWay é um protótipo educativo que explora como
+            informações sobre infraestrutura urbana e serviços de apoio podem
+            ficar mais acessíveis. A proposta incentiva a prevenção e a
+            participação comunitária, respeitando a privacidade das pessoas.
+          </p>
+        </div>
+        <div class="about-values">
+          <div>
+            <span>01</span><strong>Prevenir</strong
+            ><small>Identificar melhorias urbanas</small>
+          </div>
+          <div>
+            <span>02</span><strong>Informar</strong
+            ><small>Facilitar o acesso à orientação</small>
+          </div>
+          <div>
+            <span>03</span><strong>Acolher</strong
+            ><small>Tratar cada relato com cuidado</small>
+          </div>
+        </div>
+      </section>
+    </main>
 
-  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
-  <script src="app.js"></script>
-</body>
+    <footer class="footer">
+      <a class="brand footer-brand" href="#inicio"
+        ><span class="brand-mark">sw</span
+        ><span
+          ><strong>SheWay</strong
+          ><small>informação que acolhe</small></span
+        ></a
+      >
+      <p>
+        Protótipo desenvolvido para fins educacionais. Não substitui serviços
+        oficiais de emergência.
+      </p>
+      <a href="#inicio">Voltar ao topo ↑</a>
+    </footer>
+
+    <dialog
+      class="report-dialog"
+      id="report-dialog"
+      aria-labelledby="dialog-title"
+    >
+      <form id="report-form" class="report-form">
+        <div class="dialog-header">
+          <div>
+            <span class="eyebrow">PARTICIPAÇÃO COMUNITÁRIA</span>
+            <h2 id="dialog-title">Relatar um problema urbano</h2>
+          </div>
+          <button
+            class="close-dialog"
+            id="close-dialog"
+            type="button"
+            aria-label="Fechar formulário"
+          >
+            ×
+          </button>
+        </div>
+        <p class="dialog-intro">
+          Compartilhe uma informação objetiva que possa ajudar a identificar
+          melhorias no espaço público.
+        </p>
+        <label for="report-category">Tipo de problema <span>*</span></label>
+        <select id="report-category" name="category" required>
+          <option value="">Selecione uma categoria</option>
+          <option value="iluminacao">Iluminação pública</option>
+          <option value="calcada">Calçadas e acessibilidade</option>
+          <option value="transporte">
+            Parada ou infraestrutura de transporte
+          </option>
+          <option value="outro">Outro problema urbano</option>
+        </select>
+        <label for="report-location"
+          >Local ou referência pública <span>*</span></label
+        >
+        <input
+          id="report-location"
+          name="location"
+          maxlength="100"
+          placeholder="Ex.: próximo a uma praça ou avenida"
+          required
+        />
+        <div class="coordinates-note" id="selected-coordinates">
+          Nenhum ponto selecionado no mapa. Você pode marcar um local clicando
+          no mapa.
+        </div>
+        <label for="report-description"
+          >Descrição objetiva <span>*</span></label
+        >
+        <textarea
+          id="report-description"
+          name="description"
+          rows="3"
+          maxlength="350"
+          placeholder="Descreva o problema de infraestrutura, sem identificar pessoas."
+          required
+        ></textarea>
+        <div class="privacy-notice">
+          <span>ⓘ</span>
+          <p>
+            Este protótipo salva o relato apenas no armazenamento local deste
+            navegador. Não inclua nomes, telefones, imagens ou detalhes que
+            identifiquem pessoas. O relato não é enviado às autoridades.
+          </p>
+        </div>
+        <p class="form-error" id="form-error" role="alert" hidden></p>
+        <div class="dialog-actions">
+          <button
+            class="button button-secondary"
+            id="cancel-report"
+            type="button"
+          >
+            Cancelar</button
+          ><button class="button button-primary" type="submit">
+            Salvar relato
+          </button>
+        </div>
+      </form>
+    </dialog>
+    <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+    <script
+      src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+      integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
+      crossorigin=""
+    ></script>
+    <script src="app.js"></script>
+  </body>
 </html>
